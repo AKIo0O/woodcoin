@@ -33,9 +33,6 @@ inline uint256 Hash2(const T1 pbegin, const T1 pend)
     //std::string strhash;
     //strhash = "";
 #endif
-
-    uint512 mask = 8;
-    uint512 zero = 0;
     
     uint512 hash[3];
 
