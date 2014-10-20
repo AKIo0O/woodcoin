@@ -132,7 +132,7 @@ void CKey::Reset()
     fCompressedPubKey = false;
     if (pkey != NULL)
         EC_KEY_free(pkey);
-    pkey = EC_KEY_new_by_curve_name(NID_secp256k1);
+    pkey = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
     if (pkey == NULL)
         throw key_error("CKey::CKey() : EC_KEY_new_by_curve_name failed");
     fSet = false;
@@ -196,7 +196,7 @@ bool CKey::SetPrivKey(const CPrivKey& vchPrivKey)
 bool CKey::SetSecret(const CSecret& vchSecret, bool fCompressed)
 {
     EC_KEY_free(pkey);
-    pkey = EC_KEY_new_by_curve_name(NID_secp256k1);
+    pkey = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
     if (pkey == NULL)
         throw key_error("CKey::SetSecret() : EC_KEY_new_by_curve_name failed");
     if (vchSecret.size() != 32)
@@ -338,7 +338,7 @@ bool CKey::SetCompactSignature(uint256 hash, const std::vector<unsigned char>& v
     BN_bin2bn(&vchSig[33],32,sig->s);
 
     EC_KEY_free(pkey);
-    pkey = EC_KEY_new_by_curve_name(NID_secp256k1);
+    pkey = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
     if (nV >= 31)
     {
         SetCompressedPubKey();

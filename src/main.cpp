@@ -50,7 +50,7 @@ map<uint256, map<uint256, CDataStream*> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "FooCoin Signed Message:\n";
+const string strMessageMagic = "WoodCoin Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -828,13 +828,13 @@ uint256 static GetOrphanRoot(const CBlock* pblock)
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
-    int64 nSubsidy = 1 * COIN;
-
-    return nSubsidy + nFees;
+    int64 nSubsidy = 1000000 * COIN;
+    if (nHeight<100) return 1*COIN;	
+    else return nSubsidy/nHeight + nFees;
 }
 
-static const int64 nTargetTimespan = 1 * 24 * 60 * 60; // FooCoin: 1 days
-static const int64 nTargetSpacing = 120; // FooCoin: 2 minute blocks
+static const int64 nTargetTimespan = 1 * 24 * 60 * 60; // WoodCoin: 1 days
+static const int64 nTargetSpacing = 120; // WoodCoin: 2 minute blocks
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 // Thanks: Balthazar for suggesting the following fix
@@ -1925,7 +1925,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "FooCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "WoodCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         StartShutdown();
         return false;
     }
@@ -2038,11 +2038,14 @@ bool LoadBlockIndex(bool fAllowNew)
             // creating a different genesis block:
             uint256 hashTarget = CBigNum().SetCompact(block.nBits).getuint256();
             uint256 thash;
-            char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
+           
+	   // char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
 
             loop
             {
-                scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
+               // scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
+               Hash2(BEGIN(block.nVersion), BEGIN(thash));
+
                 if (thash <= hashTarget)
                     break;
                 if ((block.nNonce & 0xFFF) == 0)
@@ -3699,10 +3702,11 @@ void static BitcoinMiner(CWallet *pwallet)
             //unsigned int nNonceFound;
 
             uint256 thash;
-            char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
+            //char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
             loop
             {
-                scrypt_1024_1_1_256_sp(BEGIN(pblock->nVersion), BEGIN(thash), scratchpad);
+              //  scrypt_1024_1_1_256_sp(BEGIN(pblock->nVersion), BEGIN(thash), scratchpad);
+                Hash2(BEGIN(pblock->nVersion), BEGIN(thash));
 
                 if (thash <= hashTarget)
                 {
