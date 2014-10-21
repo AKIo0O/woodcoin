@@ -24,29 +24,33 @@ GLOBAL sph_skein512_context     z_skein;
 
 template<typename T1>
 inline uint256 Hash2(const T1 pbegin, const T1 pend)
+//void Hash2(const char *pbegin, char *pend)
 
 {
     sph_skein512_context     ctx_skein;
-    printf("inside hash2 with ", pbegin, "   ", pend);
+    static unsigned char pblank[1];
+    //printf("inside hash2 mark1");
 #ifndef QT_NO_DEBUG
     //std::string strhash;
     //strhash = "";
 #endif
     
-    uint512 hash[3];
+    uint512 hash[2];
 
     sph_skein512_init(&ctx_skein);
     // SKEIN;
+
+    sph_skein512 (&ctx_skein, (pbegin == pend ? pblank : static_cast<const void*>(&pbegin[0])), (pend - pbegin) * sizeof(pbegin[0]));
+ //   sph_skein512 (&ctx_skein, static_cast<const void*>(&hash[0]), 64);
+    sph_skein512_close(&ctx_skein, static_cast<void*>(&hash[0]));
+
+
     sph_skein512 (&ctx_skein, static_cast<const void*>(&hash[0]), 64);
     sph_skein512_close(&ctx_skein, static_cast<void*>(&hash[1]));
-
-
-    sph_skein512 (&ctx_skein, static_cast<const void*>(&hash[1]), 64);
-    sph_skein512_close(&ctx_skein, static_cast<void*>(&hash[2]));
     
-    printf("ending hash2 with ", hash[2]);
+    //printf("ending hash2 with %s", hash[1].trim256().ToString().c_str());
 
-    return hash[2].trim256();
+    return hash[1].trim256();
 }
 
 

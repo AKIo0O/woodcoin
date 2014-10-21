@@ -29,7 +29,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x9578f380c5933402a6a9f91b0dae2cbc10d4a3abd4b4e1e09ad74cf7064b9c93");
+uint256 hashGenesisBlock("0x30758383eae55ae5c7752b73388c1c85bdfbe930ad25ad877252841ed1e734a4");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -1981,7 +1981,7 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[1] = 0xc0;
         pchMessageStart[2] = 0xb8;
         pchMessageStart[3] = 0xdb;
-        hashGenesisBlock = uint256("0x66f1826890e325e7c867b722a4f26919984fcbd988e6fe7fb5fb06984de74736");
+        hashGenesisBlock = uint256("0xf568fcd5e8f0fa063c00f96d50637db57d1a6e5904730b482ad2ff55af5a2619");
     }
 
     //
@@ -2016,12 +2016,12 @@ bool LoadBlockIndex(bool fAllowNew)
         block.nVersion = 1;
         block.nTime    = 1413817324; //epochtime
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 0;
+        block.nNonce   = 1591189;
 
         if (fTestNet)
         {
             block.nTime    = 1413817320;
-            block.nNonce   = 0;
+            block.nNonce   = 106493;
         }
 
         //// debug print
@@ -2044,7 +2044,7 @@ bool LoadBlockIndex(bool fAllowNew)
             loop
             {
                // scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
-               Hash2(BEGIN(block.nVersion), BEGIN(thash));
+               thash = Hash2(BEGIN(block.nVersion), END(block.nNonce));
 
                 if (thash <= hashTarget)
                     break;
@@ -3706,7 +3706,7 @@ void static BitcoinMiner(CWallet *pwallet)
             loop
             {
               //  scrypt_1024_1_1_256_sp(BEGIN(pblock->nVersion), BEGIN(thash), scratchpad);
-                Hash2(BEGIN(pblock->nVersion), BEGIN(thash));
+                thash = Hash2(BEGIN(pblock->nVersion), END(pblock->nNonce));
 
                 if (thash <= hashTarget)
                 {
