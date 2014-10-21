@@ -27,7 +27,7 @@ inline uint256 Hash2(const T1 pbegin, const T1 pend)
 
 {
     sph_skein512_context     ctx_skein;
-
+    printf("inside hash2 with ", pbegin, "   ", pend);
 #ifndef QT_NO_DEBUG
     //std::string strhash;
     //strhash = "";
@@ -43,7 +43,8 @@ inline uint256 Hash2(const T1 pbegin, const T1 pend)
 
     sph_skein512 (&ctx_skein, static_cast<const void*>(&hash[1]), 64);
     sph_skein512_close(&ctx_skein, static_cast<void*>(&hash[2]));
-
+    
+    printf("ending hash2 with ", hash[2]);
 
     return hash[2].trim256();
 }

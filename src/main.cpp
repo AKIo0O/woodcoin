@@ -833,7 +833,7 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     else return nSubsidy/nHeight + nFees;
 }
 
-static const int64 nTargetTimespan = 1 * 24 * 60 * 60; // WoodCoin: 1 days
+static const int64 nTargetTimespan = 1 * 60 * 60; // WoodCoin: 1 hr
 static const int64 nTargetSpacing = 120; // WoodCoin: 2 minute blocks
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
