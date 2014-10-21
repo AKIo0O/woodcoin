@@ -226,8 +226,8 @@ bool AddLocal(const CService& addr, int nScore)
         bool fAlready = mapLocalHost.count(addr) > 0;
         LocalServiceInfo &info = mapLocalHost[addr];
         if (!fAlready || nScore >= info.nScore) {
-            info.nScore = nScore;
-            info.nPort = addr.GetPort() + (fAlready ? 1 : 0);
+            info.nScore = nScore + (fAlready ? 1 : 0);
+            info.nPort = addr.GetPort() ;
         }
         SetReachable(addr.GetNetwork());
     }
@@ -401,7 +401,7 @@ bool GetMyExternalIP(CNetAddr& ipRet)
 void ThreadGetMyExternalIP(void* parg)
 {
     // Make this thread recognisable as the external IP detection thread
-    RenameThread("bitcoin-ext-ip");
+    RenameThread("woodcoin-ext-ip");
 
     CNetAddr addrLocalHost;
     if (GetMyExternalIP(addrLocalHost))
@@ -634,7 +634,7 @@ void ThreadSocketHandler(void* parg)
     IMPLEMENT_RANDOMIZE_STACK(ThreadSocketHandler(parg));
 
     // Make this thread recognisable as the networking thread
-    RenameThread("bitcoin-net");
+    RenameThread("woodcoin-net");
 
     try
     {
@@ -979,25 +979,14 @@ void ThreadSocketHandler2(void* parg)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // DNS seeds
 // Each pair gives a source name and a seed name.
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strDNSSeed[][2] = {
-    {"woodcoin.org", "woodcoin.org"},
+    {"woodcoin.org", "dnsseeds.woodcoin.org"},
+    {"54.163.78.104","54.163.78.104"},
+    {"174.129.89.163","174.129.89.163"}
 };
 
 void ThreadDNSAddressSeed(void* parg)
@@ -1070,7 +1059,7 @@ void ThreadDNSAddressSeed2(void* parg)
 
 unsigned int pnSeed[] =
 {
-    0x2EFDCB71, 0xCC1B3AD6, 0xADA77149,
+    0x2EFDCB70, 0xCC1B3AD5, 0xADA77148,
 };
 
 void DumpAddresses()
@@ -1102,7 +1091,7 @@ void ThreadDumpAddress(void* parg)
     IMPLEMENT_RANDOMIZE_STACK(ThreadDumpAddress(parg));
 
     // Make this thread recognisable as the address dumping thread
-    RenameThread("bitcoin-adrdump");
+    RenameThread("woodcoin-adrdump");
 
     try
     {
@@ -1119,7 +1108,7 @@ void ThreadOpenConnections(void* parg)
     IMPLEMENT_RANDOMIZE_STACK(ThreadOpenConnections(parg));
 
     // Make this thread recognisable as the connection opening thread
-    RenameThread("bitcoin-opencon");
+    RenameThread("woodcoin-opencon");
 
     try
     {
@@ -1276,7 +1265,7 @@ void ThreadOpenAddedConnections(void* parg)
     IMPLEMENT_RANDOMIZE_STACK(ThreadOpenAddedConnections(parg));
 
     // Make this thread recognisable as the connection opening thread
-    RenameThread("bitcoin-opencon");
+    RenameThread("woodcoin-opencon");
 
     try
     {
@@ -1409,7 +1398,7 @@ void ThreadMessageHandler(void* parg)
     IMPLEMENT_RANDOMIZE_STACK(ThreadMessageHandler(parg));
 
     // Make this thread recognisable as the message handling thread
-    RenameThread("bitcoin-msghand");
+    RenameThread("woodcoin-msghand");
 
     try
     {
@@ -1654,7 +1643,7 @@ void static Discover()
 void StartNode(void* parg)
 {
     // Make this thread recognisable as the startup thread
-    RenameThread("bitcoin-start");
+    RenameThread("woodcoin-start");
 
     if (semOutbound == NULL) {
         // initialize semaphore
