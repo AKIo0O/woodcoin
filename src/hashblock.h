@@ -27,7 +27,6 @@ inline uint256 Hash2(const T1 pbegin, const T1 pend)
 
 {
     sph_skein512_context     ctx_skein;
-    static unsigned char pblank[1];
 
 #ifndef QT_NO_DEBUG
     //std::string strhash;
