@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>About FooCoin</string>
+   <string>About WoodCoin</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
@@ -97,7 +97,8 @@
         <string>
           Copyright © 2009-2012 Bitcoin Developers
           Copyright © 2011-2012 Litecoin Developers
-          Copyright © 2013 adam m!
+          Copyright © 2013-2014 Quarkcoin Developers
+          Copyright © 2014 Woodcoin Developers
 
           This is experimental software.
 

@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'miningpage.ui'
 **
-** Created by: Qt User Interface Compiler version 4.8.6
+** Created: Wed Oct 22 01:42:35 2014
+**      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -232,13 +233,13 @@ public:
 
     void retranslateUi(QWidget *MiningPage)
     {
-        MiningPage->setWindowTitle(QApplication::translate("MiningPage", "Mining", 0, QApplication::UnicodeUTF8));
+        MiningPage->setWindowTitle(QApplication::translate("MiningPage", "Woodcutting", 0, QApplication::UnicodeUTF8));
         usernameLabel->setText(QApplication::translate("MiningPage", "Username", 0, QApplication::UnicodeUTF8));
         serverLabel->setText(QApplication::translate("MiningPage", "Server", 0, QApplication::UnicodeUTF8));
         usernameLine->setText(QString());
         passwordLabel->setText(QApplication::translate("MiningPage", "Password", 0, QApplication::UnicodeUTF8));
         portLabel->setText(QApplication::translate("MiningPage", "Port", 0, QApplication::UnicodeUTF8));
-        startButton->setText(QApplication::translate("MiningPage", "Start Mining", 0, QApplication::UnicodeUTF8));
+        startButton->setText(QApplication::translate("MiningPage", "Start Woodcutting", 0, QApplication::UnicodeUTF8));
         shareCount->setText(QString());
         scantimeLabel->setText(QApplication::translate("MiningPage", "Scantime", 0, QApplication::UnicodeUTF8));
         threadsLabel->setText(QApplication::translate("MiningPage", "Threads", 0, QApplication::UnicodeUTF8));
@@ -246,8 +247,8 @@ public:
         typeLabel->setText(QApplication::translate("MiningPage", "Type", 0, QApplication::UnicodeUTF8));
         typeBox->clear();
         typeBox->insertItems(0, QStringList()
-         << QApplication::translate("MiningPage", "Solo Mining", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("MiningPage", "Pool Mining", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MiningPage", "Solo Woodcutting", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MiningPage", "Pool Woodcutting", 0, QApplication::UnicodeUTF8)
         );
         portLine->setText(QApplication::translate("MiningPage", "9332", 0, QApplication::UnicodeUTF8));
         mineSpeedLabel->setText(QString());
