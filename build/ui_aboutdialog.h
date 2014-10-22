@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aboutdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 4.8.6
+** Created: Wed Oct 22 00:53:51 2014
+**      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -124,7 +125,8 @@ public:
         label_2->setText(QApplication::translate("AboutDialog", "\n"
 "          Copyright \302\251 2009-2012 Bitcoin Developers\n"
 "          Copyright \302\251 2011-2012 Litecoin Developers\n"
-"          Copyright \302\251 2013 adam m!\n"
+"          Copyright \302\251 2013-2014 Quarkcoin Developers\n"
+"          Copyright \302\251 2014 Woodcoin Developers\n"
 "\n"
 "          This is experimental software.\n"
 "\n"

@@ -3,7 +3,7 @@
 #include <QSettings>
 
 #include "init.h"
-#include "walletdb.h"
+#include "walletdb.h"oo
 #include "guiutil.h"
 
 OptionsModel::OptionsModel(QObject *parent) :

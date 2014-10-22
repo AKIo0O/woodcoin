@@ -85,7 +85,7 @@ void MiningPage::startPoolMining()
         url.prepend("http://");
     QString urlLine = QString("%1:%2").arg(url, ui->portLine->text());
     QString userpassLine = QString("%1:%2").arg(ui->usernameLine->text(), ui->passwordLine->text());
-    args << "--algo" << "scrypt";
+    args << "--algo" << "skein";
     args << "--scantime" << ui->scantimeBox->text().toAscii();
     args << "--url" << urlLine.toAscii();
     args << "--userpass" << userpassLine.toAscii();
